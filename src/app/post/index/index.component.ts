@@ -35,11 +35,21 @@ export class IndexComponent implements OnInit {
    *
    * @return response()
    */
-  deletePost(id:number){
-    this.postService.delete(id).subscribe(res => {
-         this.posts = this.posts.filter(item => item.id !== id);
-         console.log('Post deleted successfully!');
-    })
+ 
+  deletePost(id: number) {
+    if (confirm('Are you sure you want to delete this post?')) {
+      this.postService.delete(id).subscribe(res => {
+        this.posts = this.posts.filter(item => item.id !== id);
+        alert('Post deleted successfully!');
+        console.log('Post deleted successfully!');
+      });
+    }
   }
+  // deletePost(id:number){
+  //   this.postService.delete(id).subscribe(res => {
+  //        this.posts = this.posts.filter(item => item.id !== id);
+  //        console.log('Post deleted successfully!');
+  //   })
+  // } 
     
 }
